@@ -60,9 +60,9 @@ export default function PostCard({ posts }) {
     axios({
       method: "PUT",
       url: baseUrl + "/api/updatepost",
-      data:{
+      data: {
         title,
-        description
+        description,
       },
       headers: {
         editPost_id,
@@ -81,7 +81,7 @@ export default function PostCard({ posts }) {
       });
     setTimeout(() => {
       setShowAlert(false);
-    }, 1000);
+    }, 2000);
   };
   const handleDeletePost = () => {
     axios({
@@ -104,7 +104,7 @@ export default function PostCard({ posts }) {
       });
     setTimeout(() => {
       setShowAlert(false);
-    }, 1000);
+    }, 2000);
   };
   function arrayRemove(arr, value) {
     let filteredArray = arr.filter((data) => data._id != value);
@@ -117,7 +117,7 @@ export default function PostCard({ posts }) {
   }
   return (
     <>
-      {showAlert && (
+      {showAlert ? (
         <BasicAlert
           message={responseMessage}
           type="success"
@@ -128,7 +128,7 @@ export default function PostCard({ posts }) {
             width: "98%",
           }}
         />
-      )}
+      ) : null}
       {postsData.map((item, index) => {
         return (
           <Grid item xs={12} sm={4} md={4} key={index}>

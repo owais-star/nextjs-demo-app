@@ -10,10 +10,10 @@ export default function SendPost() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  const [responseMessage, setResponseMessage] = useState('');
+  const [responseMessage, setResponseMessage] = useState("");
 
   const submitPost = () => {
-    if (title != '' & description != ''){
+    if ((title != "") & (description != "")) {
       axios({
         method: "POST",
         url: baseUrl + "/api/addpost",
@@ -21,24 +21,24 @@ export default function SendPost() {
           title,
           description,
         },
-      }).then((response)=> {
-        if(response.data.status){
-          setResponseMessage(response.data.message)
-          setShowAlert(true)
-          setDescription('')
-          setTitle('')
-        }
-      }).catch((error)=>{
-  
-        console.log(error)
       })
-    }else{
-      alert("Please write something")
+        .then((response) => {
+          if (response.data.status) {
+            setResponseMessage(response.data.message);
+            setShowAlert(true);
+            setDescription("");
+            setTitle("");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      alert("Please write something");
     }
     setTimeout(() => {
-      
-      setShowAlert(false)
-    }, 1000);
+      setShowAlert(false);
+    }, 2000);
   };
 
   return (
@@ -66,7 +66,7 @@ export default function SendPost() {
         variant="outlined"
         fullWidth
       />
-      {showAlert && (
+      {showAlert ? (
         <BasicAlert
           message={responseMessage}
           type="success"
@@ -75,8 +75,13 @@ export default function SendPost() {
             width: "100%",
           }}
         />
-      )}
-      <Button style={{ margin: "5px" }} variant="contained" fullWidth onClick={submitPost}>
+      ) : null}
+      <Button
+        style={{ margin: "5px" }}
+        variant="contained"
+        fullWidth
+        onClick={submitPost}
+      >
         Submit Post
       </Button>
     </Box>
