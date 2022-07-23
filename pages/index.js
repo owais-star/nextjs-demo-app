@@ -1,18 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import PostCard from "../components/post/index";
-import styles from "../styles/Home.module.css";
 import Grid from "@mui/material/Grid";
 import { baseUrl } from "../constants/ApiUrl";
 
 export default function Home({ posts }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const postsLength = posts.length;
 
-  console.log("posts", posts);
   return (
     <Box style={{ marginTop: "60px", padding: "20px" }}>
       <Grid
@@ -38,6 +31,6 @@ export async function getStaticProps() {
     props: {
       posts,
     },
-    revalidate: 1,
+    revalidate: 10,
   };
 }
