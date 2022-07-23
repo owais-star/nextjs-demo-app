@@ -2,6 +2,18 @@
   padding: 0 2rem;
 }
 
+.inputField{
+  margin: 0px,0px,0px,0px
+}
+.parentFlex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flexItem {
+  flex: 0 0 33%;
+}
+
 .main {
   min-height: 100vh;
   padding: 4rem 0;
